@@ -1,15 +1,11 @@
-{ pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 # Platform-independent terminal setup
 {
   home.packages = with pkgs; [
     # Unixy tools
-    ripgrep
-    fd
-    sd
     moreutils # ts, etc.
-    # Broken, https://github.com/NixOS/nixpkgs/issues/299680
-    # ncdu
+    graphviz
 
     # Useful for Nix development
     nixci
@@ -19,33 +15,28 @@
 
     # Publishing
     asciinema
-    twitter-convert
-
-    # Dev
-    gh
-    fuckport
-    sshuttle-via
-    entr
+    # twitter-convert
 
     # Fonts
     cascadia-code
-
-    # Txns
-    hledger
-    hledger-web
-
-    gnupg
   ];
 
-  fonts.fontconfig.enable = true;
+  xdg = {
+    enable = true;
+    cacheHome = "${config.home.homeDirectory}/.cache";
+    configHome = "${config.home.homeDirectory}/.config";
+    dataHome = "${config.home.homeDirectory}/.local/share";
+    stateHome = "${config.home.homeDirectory}/.local/state";
+  };
 
-  home.shellAliases = {
-    e = "nvim";
-    ee = "nvim $(fzf)";
-    g = "git";
-    lg = "lazygit";
-    l = "ls";
+  home.shellAliases = rec {
+    l = lib.getExe pkgs.lsd;
+    t = tree;
+    tree = "${lib.getExe pkgs.lsd} --tree";
     beep = "say 'beep'";
+    g = "git";
+    v = "vim";
+    vf = "vim $(fzf)";
   };
 
   programs = {
@@ -64,6 +55,5 @@
     fzf.enable = true;
     jq.enable = true;
     htop.enable = true;
-    rio.enable = true;
   };
 }

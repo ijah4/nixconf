@@ -1,5 +1,5 @@
 {
-  description = "Srid's NixOS / nix-darwin configuration";
+  description = "NixOS / nix-darwin configuration";
 
   inputs = {
     # Principle inputs
@@ -24,9 +24,8 @@
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
     actualism-app.url = "github:srid/actualism-app";
 
-    # Neovim
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    # Emacs
+    emacs-overlay.url = "github:nix-community/emacs-overlay";
 
     # Devshell
     treefmt-nix.url = "github:numtide/treefmt-nix";
@@ -45,10 +44,9 @@
         ./nix-darwin
       ];
 
-
       flake = {
-        # Configuration for my M1 Macbook Max (using nix-darwin)
-        darwinConfigurations.appreciate =
+        # Configuration for my M2 Macbook Max (using nix-darwin)
+        darwinConfigurations.wAir =
           self.nixos-flake.lib.mkMacosSystem
             ./systems/darwin.nix;
 
@@ -78,7 +76,6 @@
             "nix-darwin"
             "nixos-flake"
             "nix-index-database"
-            "nixvim"
           ];
         };
 

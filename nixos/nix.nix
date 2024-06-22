@@ -17,7 +17,7 @@
     registry.nixpkgs.flake = flake.inputs.nixpkgs; # Make `nix shell` etc use pinned nixpkgs
     settings = {
       max-jobs = "auto";
-      experimental-features = "nix-command flakes repl-flake";
+      experimental-features = "nix-command flakes";
       # I don't have an Intel mac.
       extra-platforms = lib.mkIf pkgs.stdenv.isDarwin "aarch64-darwin x86_64-darwin";
       # Nullify the registry for purity.

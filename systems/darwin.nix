@@ -1,4 +1,4 @@
-{ flake, ... }:
+{ flake, pkgs, ... }:
 
 let
   inherit (flake) inputs;
@@ -8,11 +8,27 @@ in
   imports = [
     self.darwinModules.default
     "${self}/nix-darwin/zsh-completion-fix.nix"
-    "${self}/nixos/github-runner.nix"
+    # "${self}/nixos/github-runner.nix"
+  ];
+
+  environment.systemPackages = with pkgs; [
+    elvish
+    curl
+    direnv
+    fzf
+    gnupg
+    jq
+    shellcheck
+    zoxide
+    nix-index
+
+    (ripgrep.override { withPCRE2 = true; })
+    fd
+    sd
   ];
 
   nixpkgs.hostPlatform = "aarch64-darwin";
-  networking.hostName = "appreciate";
+  networking.hostName = "wAir";
 
   security.pam.enableSudoTouchIdAuth = true;
 

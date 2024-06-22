@@ -3,13 +3,11 @@
   flake = {
     homeModules = {
       common = {
-        home.stateVersion = "22.11";
+        home.stateVersion = "24.05";
         imports = [
-          inputs.nixvim.homeManagerModules.nixvim
+          # inputs.nixvim.homeManagerModules.nixvim
           inputs.nix-index-database.hmModules.nix-index
-          ./tmux.nix
-          ./neovim.nix
-          # ./helix.nix
+          ./_1password.nix
           ./ssh.nix
           ./starship.nix
           ./terminal.nix
@@ -17,27 +15,24 @@
           ./git.nix
           ./direnv.nix
           ./zellij.nix
-          # ./nushell.nix
           ./just.nix
+          ./elvish.nix
+          ./emacs.nix
           # ./powershell.nix
-          ./juspay.nix
+          # ./juspay.nix
         ];
       };
       common-linux = {
         imports = [
           self.homeModules.common
           ./bash.nix
-          ./vscode-server.nix
+          # ./vscode-server.nix
         ];
       };
       common-darwin = {
         imports = [
           self.homeModules.common
           ./zsh.nix
-          # ./bash.nix
-          # ./kitty.nix
-          ./himalaya.nix
-          ./_1password.nix
         ];
       };
     };
