@@ -6,6 +6,7 @@ in
 {
   imports = [
     self.nixosModules.default
+    inputs.nixos-wsl.nixosModules.default
   ];
 
   environment.systemPackages = with pkgs; [
@@ -30,10 +31,10 @@ in
   # For home-manager to work.
   users.users.${flake.config.people.myself} = {
     name = flake.config.people.myself;
-    home = "/Users/${flake.config.people.myself}";
+    home = "/home/${flake.config.people.myself}";
   };
 
-  # Used for backwards compatibility, please read the changelog before changing.
-  # $ darwin-rebuild changelog
-  system.stateVersion = 4;
+  wsl.enable = true;
+  wsl.defaultUser = "${flake.config.people.myself}";
+  system.stateVersion = "24.05";
 }

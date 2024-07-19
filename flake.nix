@@ -11,18 +11,20 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     nixos-hardware.url = "github:NixOS/nixos-hardware";
     nixos-flake.url = "github:srid/nixos-flake";
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
+    #disko.url = "github:nix-community/disko";
+    #disko.inputs.nixpkgs.follows = "nixpkgs";
     ragenix.url = "github:yaxitech/ragenix";
+    nixos-wsl.url = "github:nix-community/NixOS-WSL";
+    nixos-wsl.inputs.nixpkgs.follows = "nixpkgs";
 
     # Software inputs
     github-nix-ci.url = "github:juspay/github-nix-ci";
-    nixos-vscode-server.flake = false;
-    nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
+    #nixos-vscode-server.flake = false;
+    #nixos-vscode-server.url = "github:nix-community/nixos-vscode-server";
     nixci.url = "github:srid/nixci";
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-    actualism-app.url = "github:srid/actualism-app";
+    #actualism-app.url = "github:srid/actualism-app";
 
     # Emacs
     emacs-overlay.url = "github:nix-community/emacs-overlay";
@@ -49,8 +51,13 @@
           self.nixos-flake.lib.mkMacosSystem
             ./systems/darwin.nix;
 
-        # Hetzner dedicated
+        # WSL
         nixosConfigurations.nixos =
+          self.nixos-flake.lib.mkLinuxSystem
+            ./systems/wsl.nix;
+
+        # Hetzner dedicated
+        nixosConfigurations.fuck =
           self.nixos-flake.lib.mkLinuxSystem
             ./systems/ax41.nix;
       };

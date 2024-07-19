@@ -7,7 +7,7 @@
         imports = [
           inputs.nix-index-database.hmModules.nix-index
           ./_1password.nix
-          ./ssh.nix
+          #./ssh.nix
           ./starship.nix
           ./terminal.nix
           ./nix.nix
