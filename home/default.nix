@@ -5,7 +5,6 @@
       common = {
         home.stateVersion = "24.05";
         imports = [
-          # inputs.nixvim.homeManagerModules.nixvim
           inputs.nix-index-database.hmModules.nix-index
           ./_1password.nix
           ./ssh.nix
@@ -18,15 +17,12 @@
           ./just.nix
           ./elvish.nix
           ./emacs.nix
-          # ./powershell.nix
-          # ./juspay.nix
         ];
       };
       common-linux = {
         imports = [
           self.homeModules.common
           ./bash.nix
-          # ./vscode-server.nix
         ];
       };
       common-darwin = {

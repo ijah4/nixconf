@@ -37,7 +37,6 @@
       imports = [
         inputs.treefmt-nix.flakeModule
         inputs.nixos-flake.flakeModule
-        inputs.nixos-flake.flakeModule
         ./users
         ./home
         ./nixos
@@ -51,20 +50,20 @@
             ./systems/darwin.nix;
 
         # Hetzner dedicated
-        nixosConfigurations.immediacy =
+        nixosConfigurations.nixos =
           self.nixos-flake.lib.mkLinuxSystem
             ./systems/ax41.nix;
       };
 
       perSystem = { self', inputs', pkgs, system, config, ... }: {
         # My Ubuntu VM
-        legacyPackages.homeConfigurations."srid@ubuntu" =
+        legacyPackages.homeConfigurations."jah" =
           self.nixos-flake.lib.mkHomeConfiguration pkgs {
             imports = [
               self.homeModules.common-linux
             ];
-            home.username = "srid";
-            home.homeDirectory = "/home/srid";
+            home.username = "jah";
+            home.homeDirectory = "/home/jah";
           };
 
         # Flake inputs we want to update periodically
