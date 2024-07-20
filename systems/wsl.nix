@@ -9,6 +9,14 @@ in
     inputs.nixos-wsl.nixosModules.default
   ];
 
+  fonts = {
+    enableDefaultPackages = false;
+    packages = with pkgs; [
+      twemoji-color-font
+      cascadia-code
+      symbola
+    ];
+  };  
   environment.systemPackages = with pkgs; [
     elvish
     curl
