@@ -16,7 +16,7 @@ in
       cascadia-code
       symbola
     ];
-  };  
+  };
   environment.systemPackages = with pkgs; [
     elvish
     curl
