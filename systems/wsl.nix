@@ -15,6 +15,7 @@ in
       twemoji-color-font
       cascadia-code
       symbola
+      lxgw-wenkai
     ];
   };
   environment.systemPackages = with pkgs; [
@@ -27,6 +28,9 @@ in
     shellcheck
     zoxide
     nix-index
+    gcc
+    xmake
+    (python3.withPackages (ps: with ps; [ epc orjson sexpdata six setuptools paramiko rapidfuzz ]))
 
     (ripgrep.override { withPCRE2 = true; })
     fd
