@@ -1,5 +1,5 @@
 {
-  myself = "elijah";
+  myself = "zix";
   users = {
     zix = {
       name = "Elijah";

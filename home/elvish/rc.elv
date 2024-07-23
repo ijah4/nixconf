@@ -27,7 +27,7 @@ set paths = [
   # ~/bin
   # $E:GOPATH/bin
   $@optpaths-filtered
-  /run/wrappers/bin
+  #/run/wrappers/bin
   /etc/profiles/per-user/$E:USER/bin
   /nix/var/nix/profiles/system/sw/bin
   #/usr/local/bin
